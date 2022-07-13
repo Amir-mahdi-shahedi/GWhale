@@ -1,0 +1,23 @@
+cls
+@ECHO OFF
+title GWhale
+if EXIST Private goto UNLOCK
+if NOT EXIST "GWhale Locker" goto MDLOCKER
+goto LOCK
+:LOCK
+ren "GWhale Locker" Private
+attrib +h +s Private
+goto End
+:UNLOCK
+echo Enter password to unlock folder
+set/p "pass=>"
+if NOT %pass%=="PASSWORD_GOES_HERE" goto FAIL
+attrib -h -s Private
+ren Private "GWhale Locker"
+goto End
+:FAIL
+goto end
+:MDLOCKER
+md "GWhale Locker"
+goto End
+:End
